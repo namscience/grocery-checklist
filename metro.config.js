@@ -1,14 +1,8 @@
 const { getDefaultConfig } = require('expo/metro-config');
+const { withNativeWind } = require('nativewind/metro');
 
 const config = getDefaultConfig(__dirname);
 
-// Chỉ dùng withNativeWind nếu nativewind đã được cài
-try {
-  const { withNativeWind } = require('nativewind/metro');
-  module.exports = withNativeWind(config, { 
-    input: './global.css',
-  });
-} catch (error) {
-  console.log('NativeWind not found, using default config');
-  module.exports = config;
-}
+module.exports = withNativeWind(config, { 
+  input: './global.css',  // Đường dẫn đúng đến file CSS của bạn
+});
